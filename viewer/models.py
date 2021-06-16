@@ -10,17 +10,20 @@ class Brand(Model):
     def __str__(self):
         return f'{self.name}'
 
+
 class Fuel(Model):
     name = CharField(max_length=55)
 
     def __str__(self):
         return f'{self.name}'
 
+
 class Transmission(Model):
     name = CharField(max_length=55)
 
     def __str__(self):
         return f'{self.name}'
+
 
 class Product(Model):
     title = CharField(max_length=128)
@@ -31,7 +34,7 @@ class Product(Model):
     transmission = ForeignKey(Transmission, on_delete=DO_NOTHING)
     fuel = ForeignKey(Fuel, on_delete=DO_NOTHING)
     brand = ForeignKey(Brand, on_delete=DO_NOTHING)
-    image = ImageField()
+    image = ImageField(upload_to='images/')
 
     def __str__(self):
         return f'{self.title}'
