@@ -5,7 +5,7 @@
     <ul>
         {% for product in product_list %}
             <li>
-                {{ product.title }} ({{ product.produced }}) - {{ product.price }} CZK
+                <a href="{% url 'products_detail' pk=product.id %}">{{ product.title }}</a> ({{ product.produced }}) - {{ product.price }} CZK
             </li>
         {% endfor %}
     </ul>
