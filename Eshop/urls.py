@@ -16,14 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.template import base
 from django.urls import path
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from viewer.views import ProductView, ProductDetailView, ProductCreateView
+from django.conf import settings
+from django.conf.urls.static import static
 
-from viewer.views import ProductView, ProductDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products', ProductView.as_view(), name='products'),
-    path('', ProductView.as_view(), name='products'),
+    path('create', ProductCreateView.as_view(), name='create'),
+    path('', ProductView.as_view(), name='index'),
     path('<int:pk>/', ProductDetailView.as_view(), name='products_detail'),
 
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+
