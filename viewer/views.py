@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, DeleteView, UpdateView
 
 from viewer.form import ProductModelForm
-from viewer.models import  Product
+from viewer.models import Product
 
 
 class ProductView(ListView):
