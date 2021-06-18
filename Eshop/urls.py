@@ -21,7 +21,8 @@ from django.urls import path, re_path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from accounts.views import SubmittableLoginView
-from viewer.views import ProductView, ProductDetailView, ProductCreateView, ProductUpdateView, ProductDeleteView
+from viewer.views import ProductView, ProductDetailView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
+     CarbrandListView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -37,7 +38,7 @@ urlpatterns = [
     path('delete', ProductDeleteView.as_view(), name='delete'),
     path('', ProductView.as_view(), name='index'),
     path('<int:pk>/', ProductDetailView.as_view(), name='products_detail'),
-
+    path('brands/<brand>', CarbrandListView.as_view(), name='brands_products'),
     path('accounts/login', SubmittableLoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
 

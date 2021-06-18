@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, DeleteView, UpdateView
 
 from viewer.form import ProductModelForm
-from viewer.models import Product
+from viewer.models import Product, Brand
 
 
 class ProductView(ListView):
@@ -44,4 +44,17 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     Model = Product
     success_url = reverse_lazy('')
 
+# Brand View
 
+
+
+class CarbrandListView(ListView):
+    template_name = "brand_list.html"
+    context_object_name = "carbrandlist"
+
+    def get_queryset(self):
+        content = {
+            'carbrand': self.kwargs['brand'],
+            'products': Product.objects.filter(brand__name=self.kwargs['brand'])
+        }
+        return content

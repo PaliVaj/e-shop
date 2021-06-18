@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Brand</title>
-</head>
-<body>
+    {% extends "base.html" %}
 
-</body>
-</html>
+    {% block title %}
+   Brandlist
+    {% endblock %}
+
+    {% block content %}
+
+       <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+        <div class="col-12 pb-5"><h1> All {{carbrandlist.carbrand}} cars</h1></div>
+        {% for product in carbrandlist.products %}
+            <div class="col-md-4">
+            <a class="text-dark" href="#">
+              <div class="card mb-4 box-shadow">
+                <img src="{{ product.image.url }}" class="card-img-top" alt="Tu ma byt obrazok">
+                <div class="card-body">
+                  <h2 style="font-size:18px;font-weight:bold">{{product.title|truncatechars:50}}</h2>
+                  <p class="card-text">{{product.price|truncatechars:50}} CZK</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+              </a>
+            </div>
+        {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+    {% endblock %}
