@@ -2,6 +2,23 @@
 
 {% block content %}
     <h1>Welcome to eshop!</h1>
+
+    <form action="#" method="POST">
+    {% csrf_token %}
+    <input type="text" name="name">
+    <input type="submit" name="submit" value="Search">
+</form>
+
+
+
+{% for result in results %}
+
+    <p>{{result.name}}</p>
+
+{% endfor %}
+
+
+
     <ul>
         {% for product in product_list %}
             <li>
