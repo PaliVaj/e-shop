@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -18,6 +18,8 @@ class ProductView(ListView):
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'productsdetail.html'
+
+
     #queryset = Product.objects.all()
 
     def get_context_data(self, **kwargs):
@@ -28,22 +30,24 @@ class ProductDetailView(DetailView):
 
 # Vytvorenie CreateViewForm
 
-class ProductCreateView(LoginRequiredMixin, CreateView):
+class ProductCreateView(PermissionRequiredMixin,LoginRequiredMixin, CreateView):
     template_name = 'form.html'
     form_class = ProductModelForm
     success_url = reverse_lazy('index')
+    permission_required = 'viewer.add_product'
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(PermissionRequiredMixin,LoginRequiredMixin, UpdateView):
     template_name = 'form.html'
     model = Product
     form_class = ProductModelForm
     success_url = reverse_lazy('index')
+    permission_required = 'viewer.update_product'
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(PermissionRequiredMixin,LoginRequiredMixin, DeleteView):
     template_name = 'product_confirm_delete'
     model = Product
     success_url = reverse_lazy('index')
-
+    permission_required = 'viewer.delete_product'
 # Brand View
 
 
