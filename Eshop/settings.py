@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Eshop',
     'viewer',
     'accounts',
+    'shopping_cart',
 
 ]
 
@@ -137,3 +138,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
+
+CART_SESSION_ID = 'shopping_cart'
+'cart.context_processor.cart_total_amount'
