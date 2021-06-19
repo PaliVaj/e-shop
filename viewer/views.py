@@ -67,10 +67,10 @@ class CarbrandListView(ListView):
 
 def search_product(request):
     """ search function  """
-    if request.method == "POST":
-        query_name = request.POST.get('name', None)
+    if request.method == "GET":
+        query_name = request.GET.get('name', None)
         if query_name:
-            results = Product.objects.filter(name__contains=query_name)
-            return render(request, 'products.html', {"results":results})
+            results = Product.objects.filter(title__icontains=query_name)
+            return render(request, 'products.html', {"product_list":results})
 
     return render(request, 'products.html')

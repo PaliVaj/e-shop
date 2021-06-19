@@ -20,9 +20,9 @@ from django.template import base
 from django.urls import path, re_path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from accounts.views import SubmittableLoginView
+from accounts.views import SubmittableLoginView, SignUpView
 from viewer.views import ProductView, ProductDetailView, ProductCreateView, ProductUpdateView, ProductDeleteView, \
-     CarbrandListView
+    CarbrandListView, search_product
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -41,6 +41,9 @@ urlpatterns = [
     path('brands/<brand>', CarbrandListView.as_view(), name='brands_products'),
     path('accounts/login', SubmittableLoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('accounts/sign-up/', SignUpView.as_view(), name='sign_up'),
+    path('search/', search_product, name='search'),
+
 
 ]
 
