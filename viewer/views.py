@@ -31,18 +31,18 @@ class ProductDetailView(DetailView):
 class ProductCreateView(LoginRequiredMixin, CreateView):
     template_name = 'form.html'
     form_class = ProductModelForm
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('index')
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'form.html'
-    Model = Product
+    model = Product
     form_class = ProductModelForm
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('index')
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'product_confirm_delete'
-    Model = Product
-    success_url = reverse_lazy('')
+    model = Product
+    success_url = reverse_lazy('index')
 
 # Brand View
 

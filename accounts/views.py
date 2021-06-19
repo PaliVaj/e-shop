@@ -5,6 +5,6 @@ from django.urls import reverse_lazy
 
 class SubmittableLoginView(LoginView):
     template_name = 'form.html'
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('index')
 
 
