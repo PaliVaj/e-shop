@@ -26,7 +26,7 @@ class Transmission(Model):
 
 
 class Product(Model):
-    title = CharField(max_length=128)
+    name = CharField(max_length=128)
     produced = DateField()
     price = IntegerField()
     color = CharField(max_length=55)
@@ -37,4 +37,4 @@ class Product(Model):
     image = ImageField(upload_to='images/')
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.name}'

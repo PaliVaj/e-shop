@@ -68,8 +68,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ],
-        },
+                'cart.context_processor.cart_total_amount'
+            ],'libraries': {
+                'cart_tag':'cart.templatetags.cart_tag'}
+            },
     },
 ]
 
@@ -139,5 +141,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 
-CART_SESSION_ID = 'shopping_cart'
-'cart.context_processor.cart_total_amount'
+CART_SESSION_ID = 'cart'

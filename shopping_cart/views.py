@@ -1,20 +1,21 @@
-from django.shortcuts import render
 
 from django.shortcuts import render, redirect
 from viewer.models import Product
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 
+
 @login_required(login_url="/users/login")
 def cart_add(request, id):
     cart = Cart(request)
     product = Product.objects.get(id=id)
     cart.add(product=product)
-    return redirect("home")
+    return redirect("cart_detail")
 
 
 @login_required(login_url="/users/login")
 def item_clear(request, id):
+
     cart = Cart(request)
     product = Product.objects.get(id=id)
     cart.remove(product)
@@ -46,5 +47,6 @@ def cart_clear(request):
 
 @login_required(login_url="/users/login")
 def cart_detail(request):
-    return render(request, 'cart/cart_detail.html')
+    return render(request, 'cart_detail.html')
+
 

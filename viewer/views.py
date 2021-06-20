@@ -1,3 +1,4 @@
+
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -74,3 +75,4 @@ def search_product(request):
             return render(request, 'products.html', {"product_list":results})
 
     return render(request, 'products.html')
+
