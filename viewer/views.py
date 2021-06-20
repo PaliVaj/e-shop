@@ -10,7 +10,7 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView,
 
 from viewer.form import ProductModelForm
 from viewer.models import Product, Brand
-
+from django.db.models import Q
 
 class ProductView(ListView):
     template_name = 'products.html'
@@ -71,7 +71,8 @@ def search_product(request):
     if request.method == "GET":
         query_name = request.GET.get('name', None)
         if query_name:
-            results = Product.objects.filter(title__icontains=query_name)
+            results = Product.objects.filter(Q(name__icontains=query_name)|Q(fuel__name__icontains=query_name)|Q(transmission__name__icontains=query_name)|Q(brand__name__icontains=query_name)|Q(color__icontains=query_name))
+            #results | =
             return render(request, 'products.html', {"product_list":results})
 
     return render(request, 'products.html')
