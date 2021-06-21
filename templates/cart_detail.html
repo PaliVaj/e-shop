@@ -1,10 +1,40 @@
+<!DOCTYPE html>
+<html>
 {% load cart_tag %}
 
-Total Length :: {{request.session.cart|length}}
 
-Cart Detail:
+<body>
+    <center>
+        <h1 style="color: green;">Obsah košíku</h1>
+
+<head>
+    <style>
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 6px;
+            text-align:center;
+        }
+
+    </style>
+</head>
 
 {% for key,value in request.session.cart.items %}
-{{value.name}} {{value.price}} {{value.quantity}} {{value.image}} Total {{ value.price|multiply:value.quantity }}
+<br>
+<b>
+Vozidlo: {{value.name}}
+    </b>
+<br>
+<b>Cena:</b>
+{{value.price}} CZK
+<br>
+<b>Množstvo: </b>
+{{value.quantity}}
+
+<br>
+<br>
+
+Total {{ value.price|multiply:value.quantity }} CZK
 
 {% endfor %}
